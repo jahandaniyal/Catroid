@@ -170,6 +170,13 @@ public class ExtendedActions extends Actions {
 		return action;
 	}
 
+	public static LegoNxtSensorTouchAction legoNxtSensorTouch(
+			org.catrobat.catroid.content.bricks.LegoNxtSensorTouchBrick.Sensor sensorEnum) {
+		LegoNxtSensorTouchAction action = action(LegoNxtSensorTouchAction.class);
+		action.setSensorEnum(sensorEnum);
+		return action;
+	}
+
 	public static LegoNxtMotorTurnAngleAction legoNxtMotorTurnAngle(Sprite sprite,
 			org.catrobat.catroid.content.bricks.LegoNxtMotorTurnAngleBrick.Motor motorEnum, Formula degrees) {
 		LegoNxtMotorTurnAngleAction action = action(LegoNxtMotorTurnAngleAction.class);
