@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--
  *  Catroid: An on-device visual programming system for Android devices
  *  Copyright (C) 2010-2013 The Catrobat Team
@@ -19,14 +19,59 @@
  *  GNU Affero General Public License for more details.
  *  
  *  You should have received a copy of the GNU Affero General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="setting_mindstorm_bricks"
-            android:summary="@string/preference_description_mindstorm_bricks"
-            android:title="@string/preference_title_enable_mindstorm_bricks" />
+    <PreferenceScreen
+        android:defaultValue="true"
+        android:key="setting_mindstorm_bricks"
+        android:summary="@string/preference_description_mindstorm_bricks"
+        android:title="@string/preference_title_enable_mindstorm_bricks" >
+        <PreferenceCategory
+            android:key="setting_mindstorm_motors"
+            android:title="@string/preference_title_mindstorm_motor_ports" >
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="setting_motor_a"
+                android:title="@string/nxt_motor_a" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="setting_motor_b"
+                android:title="@string/nxt_motor_b" />
+            <CheckBoxPreference
+                android:defaultValue="false"
+                android:key="setting_motor_c"
+                android:title="@string/nxt_motor_c" />
+        </PreferenceCategory>
+        <PreferenceCategory
+            android:key="setting_mindstorm_sensors"
+            android:title="@string/preference_title_mindstorm_sensor_ports" >
+            <ListPreference
+                android:defaultValue="@string/nxt_sensor_none"
+                android:entries="@array/nxt_sensor_chooser"
+                android:entryValues="@array/nxt_sensor_chooser"
+                android:key="setting_sensor_1"
+                android:title="@string/nxt_sensor_1" />
+            <ListPreference
+                android:defaultValue="@string/nxt_sensor_none"
+                android:entries="@array/nxt_sensor_chooser"
+                android:entryValues="@array/nxt_sensor_chooser"
+                android:key="setting_sensor_2"
+                android:title="@string/nxt_sensor_2" />
+            <ListPreference
+                android:defaultValue="@string/nxt_sensor_none"
+                android:entries="@array/nxt_sensor_chooser"
+                android:entryValues="@array/nxt_sensor_chooser"
+                android:key="setting_sensor_3"
+                android:title="@string/nxt_sensor_3" />
+            <ListPreference
+                android:defaultValue="@string/nxt_sensor_none"
+                android:entries="@array/nxt_sensor_chooser"
+                android:entryValues="@array/nxt_sensor_chooser"
+                android:key="setting_sensor_4"
+                android:title="@string/nxt_sensor_4" />
+        </PreferenceCategory>
+    </PreferenceScreen>
 
 </PreferenceScreen>
