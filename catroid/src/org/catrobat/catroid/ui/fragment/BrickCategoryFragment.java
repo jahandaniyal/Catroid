@@ -138,7 +138,8 @@ public class BrickCategoryFragment extends SherlockListFragment {
 		categories.add(inflater.inflate(R.layout.brick_category_uservariables, null));
 
 		SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-		if (sharedPreferences.getBoolean("setting_mindstorm_bricks", false)) {
+		//temp changed false to true in the following line for testing
+		if (sharedPreferences.getBoolean("setting_mindstorm_bricks", true)) {
 			categories.add(inflater.inflate(R.layout.brick_category_lego_nxt, null));
 		}
 
