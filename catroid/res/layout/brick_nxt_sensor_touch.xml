@@ -50,6 +50,17 @@
             style="@style/BrickText.SingleLine"
             android:text="@string/nxt_sensor_touch" >
         </TextView>
+        
+        <TextView
+            android:id="@+id/nxt_sensor_output_txt"
+            style="@style/BrickEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_inputType="number"
+            app:layout_textField="true"
+            android:clickable="false"
+            android:maxEms="5" >
+        </TextView>
 
         <Spinner
             android:id="@+id/sensor_touch_spinner"

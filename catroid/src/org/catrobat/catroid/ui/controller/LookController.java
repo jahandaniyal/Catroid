@@ -44,7 +44,6 @@ import android.widget.TextView;
 
 import com.badlogic.gdx.graphics.Pixmap;
 
-import org.catrobat.catroid.BuildConfig;
 import org.catrobat.catroid.ProjectManager;
 import org.catrobat.catroid.R;
 import org.catrobat.catroid.common.Constants;
@@ -65,8 +64,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LookController {
-
+public final class LookController {
 	public static final int REQUEST_SELECT_OR_DRAW_IMAGE = 0;
 	public static final int REQUEST_POCKET_PAINT_EDIT_IMAGE = 1;
 	public static final int REQUEST_TAKE_PICTURE = 2;
@@ -75,13 +73,14 @@ public class LookController {
 	public static final String BUNDLE_ARGUMENTS_URI_IS_SET = "uri_is_set";
 	public static final String LOADER_ARGUMENTS_IMAGE_URI = "image_uri";
 	public static final String SHARED_PREFERENCE_NAME = "showDetailsLooks";
-	private static LookController instance;
+
+	private static final LookController INSTANCE = new LookController();
+
+	private LookController() {
+	}
 
 	public static LookController getInstance() {
-		if (instance == null) {
-			instance = new LookController();
-		}
-		return instance;
+		return INSTANCE;
 	}
 
 	public void updateLookLogic(final int position, final LookViewHolder holder, final LookBaseAdapter lookAdapter) {
@@ -324,8 +323,6 @@ public class LookController {
 			try {
 				File newLookFile = StorageHandler.getInstance().copyImage(projectName, pathOfPocketPaintImage,
 						newFileName);
-				File temporaryPictureFileInPocketPaint = new File(pathOfPocketPaintImage);
-				temporaryPictureFileInPocketPaint.delete(); //delete temp file in paintroid
 
 				StorageHandler.getInstance().deleteFile(selectedLookData.getAbsolutePath()); //reduce usage in container or delete it
 
@@ -335,6 +332,7 @@ public class LookController {
 				e.printStackTrace();
 			}
 		}
+
 	}
 
 	public void loadPictureFromCameraIntoCatroid(Uri lookFromCameraUri, Activity activity,
@@ -367,16 +365,9 @@ public class LookController {
 					.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
 						@Override
 						public void onClick(DialogInterface dialog, int id) {
-
-							if (BuildConfig.DEBUG) {
-								Intent downloadPocketPaintIntent = new Intent(Intent.ACTION_VIEW, Uri
-										.parse(Constants.POCKET_PAINT_DOWNLOAD_LINK_NIGHTLY));
-								activity.startActivity(downloadPocketPaintIntent);
-							} else {
-								Intent downloadPocketPaintIntent = new Intent(Intent.ACTION_VIEW, Uri
-										.parse(Constants.POCKET_PAINT_DOWNLOAD_LINK));
-								activity.startActivity(downloadPocketPaintIntent);
-							}
+							Intent downloadPocketPaintIntent = new Intent(Intent.ACTION_VIEW, Uri
+									.parse(Constants.POCKET_PAINT_DOWNLOAD_LINK));
+							activity.startActivity(downloadPocketPaintIntent);
 						}
 					}).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
 						@Override
